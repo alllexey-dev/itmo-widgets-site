@@ -1,0 +1,17 @@
+# Static site container behind the shared nginx-hub. Deploy directory on the
+# server: /mnt/raid/srv/web/itmowidgets-site with the repository's site/ next to it.
+services:
+  itmowidgets-site:
+    image: nginx:alpine
+    container_name: itmowidgets-site
+    restart: unless-stopped
+    volumes:
+      - ./site:/usr/share/nginx/html:ro
+      - ./deploy/site.nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    networks:
+      - web
+
+networks:
+  web:
+    external: true
+    name: web
