@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>ITMO.Widgets — расписание, спорт, зачётка и QR-пропуск ИТМО на Android</title>
-  <meta name="description" content="Неофициальное приложение для студентов ИТМО: расписание с деталями пар, автозапись на спорт, зачётка с БАРС, друзья, QR-пропуск и виджеты.">
+  <meta name="description" content="Неофициальное приложение для студентов ИТМО: виджеты расписания, расписание друзей, зачётка с БАРС, автозапись на спорт и QR-пропуск.">
   <meta property="og:title" content="ITMO.Widgets">
   <meta property="og:description" content="Расписание, спорт, зачётка и QR-пропуск ИТМО в одном приложении для Android.">
   <meta property="og:image" content="https://widgets.alllexey.dev/img/icon.webp">
@@ -20,7 +20,6 @@
     </a>
     <nav>
       <a href="#features">Возможности</a>
-      <a href="#widgets">Виджеты</a>
       <a href="#faq">FAQ</a>
       <a class="button button-small" href="#download">Скачать</a>
     </nav>
@@ -30,148 +29,91 @@
     <section class="hero">
       <div class="hero-text">
         <h1>Расписание, спорт и пропуск — в одном приложении</h1>
-        <p class="lead">Для студентов ИТМО на Android. Всё нужное на сегодня — на главном экране и в виджетах, без открытия сайта.</p>
+        <p class="lead">Для студентов ИТМО на Android. Всё нужное на сегодня — на главном экране и в виджетах.</p>
         <div class="actions">
           <a class="button" href="#download">Скачать APK</a>
-          <a class="button button-tonal" href="https://github.com/alllexey-dev/ITMO.Widgets">Исходники на GitHub</a>
+          <a class="button button-tonal" href="https://github.com/alllexey-dev/ITMO.Widgets">GitHub</a>
         </div>
         <p class="note">Неофициальное приложение, не связано с Университетом ИТМО. Вход через ITMO.ID, пароль приложению не нужен.</p>
       </div>
       <figure class="phone">
         <picture>
           <source srcset="img/night/home.webp" media="(prefers-color-scheme: dark)">
-          <img src="img/light/home.webp" alt="Главный экран: пары на сегодня, спорт и заявки в друзья" width="720" height="1600">
+          <img src="img/light/home.webp" alt="Главный экран: пары на сегодня, спорт и заявки в друзья">
         </picture>
       </figure>
     </section>
 
-    <section id="features" class="features">
-      <article class="feature">
-        <div class="feature-text">
+    <section id="features" class="rows">
+      <article class="row">
+        <div class="row-text">
+          <span class="eyebrow">Виджеты</span>
+          <h2>Ближайшая пара на домашнем экране</h2>
+          <p>Следующая пара, расписание на день и QR-пропуск. Обновляются сами.</p>
+        </div>
+        <div class="homescreen">
+          <picture class="w w-single"><source srcset="img/night/widget_single_lesson_preview.webp" media="(prefers-color-scheme: dark)"><img src="img/light/widget_single_lesson_preview.webp" alt="Виджет «Ближайшая пара»" loading="lazy"></picture>
+          <picture class="w w-list"><source srcset="img/night/widget_lesson_list_preview.webp" media="(prefers-color-scheme: dark)"><img src="img/light/widget_lesson_list_preview.webp" alt="Виджет «Расписание на день»" loading="lazy"></picture>
+          <picture class="w w-qr"><img src="img/light/widget_qr_code_preview.webp" alt="Виджет QR-пропуска" loading="lazy"></picture>
+        </div>
+      </article>
+
+      <article class="row row-reverse">
+        <div class="row-text">
           <span class="eyebrow">Расписание</span>
           <h2>Пары с подробностями</h2>
-          <p>Расписание по дням с таймлайном, работает офлайн. Тап по паре — преподаватель, аудитория, «Открыть на карте», видеозвонок и друзья на той же паре.</p>
-        </div>
-        <figure class="shot"><picture><source srcset="img/night/schedule.webp" media="(prefers-color-scheme: dark)"><img src="img/light/schedule.webp" alt="Расписание на день" loading="lazy" width="720" height="1600"></picture></figure>
-      </article>
-
-      <article class="feature">
-        <div class="feature-text">
-          <span class="eyebrow">Спорт</span>
-          <h2>Запись и автозапись</h2>
-          <p>Каталог занятий с фильтрами и свободными местами. Мест нет — автозапись займёт место, когда оно появится, и пришлёт уведомление.</p>
-        </div>
-        <figure class="shot"><picture><source srcset="img/night/sport-catalog.webp" media="(prefers-color-scheme: dark)"><img src="img/light/sport-catalog.webp" alt="Каталог занятий по спорту" loading="lazy" width="720" height="1600"></picture></figure>
-      </article>
-
-      <article class="feature">
-        <div class="feature-text">
-          <span class="eyebrow">Спорт</span>
-          <h2>Очередь под контролем</h2>
-          <p>Место в очереди, история попыток, условия записи. Отменить запись или очередь можно прямо из расписания и с главного экрана.</p>
-        </div>
-        <figure class="shot"><picture><source srcset="img/night/sport-details.webp" media="(prefers-color-scheme: dark)"><img src="img/light/sport-details.webp" alt="Детали занятия с очередью" loading="lazy" width="720" height="1600"></picture></figure>
-      </article>
-
-      <article class="feature">
-        <div class="feature-text">
-          <span class="eyebrow">Зачётка</span>
-          <h2>Баллы и оценки</h2>
-          <p>Предметы семестра с баллами из 100, контрольные точки с минимумами, физкультура из баллов по спорту. Чип «БАРС» накладывает оценки из БАРС.</p>
-        </div>
-        <figure class="shot"><picture><source srcset="img/night/recordbook.webp" media="(prefers-color-scheme: dark)"><img src="img/light/recordbook.webp" alt="Зачётка за семестр" loading="lazy" width="720" height="1600"></picture></figure>
-      </article>
-
-      <article class="feature">
-        <div class="feature-text">
-          <span class="eyebrow">Зачётка</span>
-          <h2>Предмет целиком</h2>
-          <p>У каждого предмета две вкладки: баллы по контрольным точкам и расписание — преподаватели и ближайшие пары на четыре недели.</p>
-        </div>
-        <figure class="shot"><picture><source srcset="img/night/subject-scores.webp" media="(prefers-color-scheme: dark)"><img src="img/light/subject-scores.webp" alt="Контрольные точки предмета" loading="lazy" width="720" height="1600"></picture></figure>
-      </article>
-
-      <article class="feature">
-        <div class="feature-text">
-          <span class="eyebrow">Пропуск</span>
-          <h2>QR за один тап</h2>
-          <p>Код кэшируется и открывается сразу, даже без сети. Виджет со «спойлером» не светит код на домашнем экране.</p>
-        </div>
-        <figure class="shot"><picture><source srcset="img/night/qr.webp" media="(prefers-color-scheme: dark)"><img src="img/light/qr.webp" alt="Экран QR-пропуска" loading="lazy" width="720" height="1600"></picture></figure>
-      </article>
-
-      <article class="feature feature-wide">
-        <div class="feature-text">
-          <span class="eyebrow">Друзья</span>
-          <h2>Кто на паре и кто на тренировке</h2>
-          <p>Добавляйте друзей по имени, смотрите их расписание и записи на спорт, если они это разрешили. Друзья видны на паре и на занятии. Кто видит ваши данные — выбираете вы: все, друзья или никто.</p>
-          <p class="muted">Заявки в друзья и результаты автозаписи приходят уведомлениями.</p>
+          <p>Тап по паре — преподаватель, аудитория, карта и видеозвонок. Работает без сети.</p>
         </div>
         <div class="shots">
-          <figure class="shot"><picture><source srcset="img/night/friend-picker.webp" media="(prefers-color-scheme: dark)"><img src="img/light/friend-picker.webp" alt="Выбор расписания друга" loading="lazy" width="720" height="1600"></picture></figure>
-          <figure class="shot"><picture><source srcset="img/night/profile.webp" media="(prefers-color-scheme: dark)"><img src="img/light/profile.webp" alt="Профиль друга" loading="lazy" width="720" height="1600"></picture></figure>
+          <figure class="shot"><picture><source srcset="img/night/schedule.webp" media="(prefers-color-scheme: dark)"><img src="img/light/schedule.webp" alt="Расписание на день" loading="lazy"></picture></figure>
+          <figure class="shot"><picture><source srcset="img/night/lesson.webp" media="(prefers-color-scheme: dark)"><img src="img/light/lesson.webp" alt="Детали пары" loading="lazy"></picture></figure>
+        </div>
+      </article>
+
+      <article class="row">
+        <div class="row-text">
+          <span class="eyebrow">Друзья</span>
+          <h2>Расписание друзей</h2>
+          <p>Добавьте друга — и смотрите его пары и тренировки рядом со своими. Кто видит ваши, решаете вы.</p>
+        </div>
+        <div class="shots">
+          <figure class="shot"><picture><source srcset="img/night/friend-picker.webp" media="(prefers-color-scheme: dark)"><img src="img/light/friend-picker.webp" alt="Выбор расписания друга" loading="lazy"></picture></figure>
+          <figure class="shot"><picture><source srcset="img/night/profile.webp" media="(prefers-color-scheme: dark)"><img src="img/light/profile.webp" alt="Профиль друга" loading="lazy"></picture></figure>
+        </div>
+      </article>
+
+      <article class="row row-reverse">
+        <div class="row-text">
+          <span class="eyebrow">Зачётка</span>
+          <h2>Баллы из ИСУ и БАРС</h2>
+          <p>Предметы семестра, контрольные точки и оценки из БАРС одним переключателем.</p>
+        </div>
+        <div class="shots">
+          <figure class="shot"><picture><source srcset="img/night/recordbook.webp" media="(prefers-color-scheme: dark)"><img src="img/light/recordbook.webp" alt="Зачётка за семестр" loading="lazy"></picture></figure>
+          <figure class="shot"><picture><source srcset="img/night/subject-scores.webp" media="(prefers-color-scheme: dark)"><img src="img/light/subject-scores.webp" alt="Контрольные точки предмета" loading="lazy"></picture></figure>
         </div>
       </article>
     </section>
 
-    <section id="widgets" class="widgets">
-      <div class="section-head">
-        <span class="eyebrow">Виджеты</span>
-        <h2>Ближайшая пара на домашнем экране</h2>
-        <p>Три виджета: следующая пара, расписание на день и QR-пропуск. Обновляются сами по границам пар, показывают ожидающие автозаписи, размер текста настраивается.</p>
-      </div>
-      <div class="homescreen">
-        <picture class="w w-single"><source srcset="img/night/widget_single_lesson_preview.webp" media="(prefers-color-scheme: dark)"><img src="img/light/widget_single_lesson_preview.webp" alt="Виджет «Ближайшая пара»" loading="lazy"></picture>
-        <picture class="w w-list"><source srcset="img/night/widget_lesson_list_preview.webp" media="(prefers-color-scheme: dark)"><img src="img/light/widget_lesson_list_preview.webp" alt="Виджет «Расписание на день»" loading="lazy"></picture>
-        <picture class="w w-qr"><img src="img/light/widget_qr_code_preview.webp" alt="Виджет QR-пропуска" loading="lazy"></picture>
-      </div>
-    </section>
-
-    <section class="two">
-      <div class="card">
-        <h2>Что где хранится</h2>
-        <ul>
-          <li>Токены ITMO.ID остаются на телефоне. Расписание, спорт, зачётку и QR приложение получает напрямую у MyITMO.</li>
-          <li>Друзья, очереди на спорт и уведомления работают через сервер ITMO.Widgets. Они включаются отдельно; без этого сервер о вас не знает.</li>
-          <li>При выходе из аккаунта локальные данные стираются. Данные на сервере удаляются по запросу.</li>
-        </ul>
-        <a href="privacy.html">Политика конфиденциальности</a>
-      </div>
-      <div id="download" class="card card-download">
+    <section id="download" class="card card-download">
+      <div>
         <span class="eyebrow">Скачать</span>
         <h2>Версия 2.1</h2>
-        <p>Android 8.0 и новее. О новых версиях приложение сообщает само.</p>
-        <div class="actions">
-          <a class="button" href="https://github.com/alllexey-dev/ITMO.Widgets/releases/latest">APK с GitHub</a>
-          <a class="button button-tonal button-disabled" aria-disabled="true">Google Play — скоро</a>
-        </div>
+        <p>Android 8.0 и новее. Ещё внутри: автозапись на спорт, QR-пропуск, уведомления. <a href="privacy.html">Что хранится и где</a>.</p>
       </div>
-    </section>
-
-    <section>
-      <details class="changelog">
-        <summary>Что нового в 2.1</summary>
-        <ul>
-          <li>Главный экран — лента: пары на сегодня, спорт, заявки в друзья.</li>
-          <li>Детали пары: карта, видеозвонок, друзья на паре.</li>
-          <li>Отмена записи и автозаписи на спорт из расписания и с главного.</li>
-          <li>Предмет в зачётке: преподаватели и ближайшие пары.</li>
-          <li>Друзья, заявки, поиск людей, чужие расписания и спорт, настройки приватности.</li>
-          <li>Уведомления о результатах автозаписи и заявках в друзья.</li>
-          <li>Размер текста в виджетах.</li>
-        </ul>
-      </details>
+      <div class="actions">
+        <a class="button" href="https://github.com/alllexey-dev/ITMO.Widgets/releases/latest">APK с GitHub</a>
+        <a class="button button-tonal button-disabled" aria-disabled="true">Google Play — скоро</a>
+      </div>
     </section>
 
     <section id="faq" class="faq">
       <h2>Вопросы</h2>
       <div class="faq-grid">
-        <details><summary>Почему приложение не спрашивает пароль?</summary><p>Вход идёт через ITMO.ID в браузере, как на сайте my.itmo.ru. Приложение получает только токен и хранит его на телефоне.</p></details>
-        <details><summary>Что такое «сервисы ITMO.Widgets»?</summary><p>Друзья, друзья на паре, очереди на спорт и уведомления. Это отдельный сервер, он включается в настройках и выключается там же.</p></details>
-        <details><summary>Как работает автозапись?</summary><p>Вы встаёте в очередь на заполненное занятие или на ещё не опубликованное. Сервер проверяет места и записывает вас через MyITMO, а приложение присылает уведомление. Лимит попыток и условия видны в деталях занятия.</p></details>
-        <details><summary>Это официальное приложение ИТМО?</summary><p>Нет. Проект студенческий, с открытым кодом, и не связан с университетом. Данные берутся из тех же сервисов, что открывает браузер.</p></details>
+        <details><summary>Почему приложение не спрашивает пароль?</summary><p>Вход идёт через ITMO.ID в браузере, как на my.itmo.ru. Приложение получает только токен и хранит его на телефоне.</p></details>
+        <details><summary>Это официальное приложение ИТМО?</summary><p>Нет. Студенческий проект с открытым кодом, не связан с университетом.</p></details>
+        <details><summary>Что такое «сервисы ITMO.Widgets»?</summary><p>Друзья, автозапись на спорт и уведомления. Работают через сервер разработчика и включаются в настройках отдельно.</p></details>
         <details><summary>Виджет мелкий на Samsung</summary><p>Растяните виджет на нужное число ячеек и выберите размер текста в его настройках.</p></details>
-        <details><summary>Не приходят уведомления</summary><p>Проверьте, что сервисы включены и разрешены уведомления: подсказка об этом есть на главном экране, а каналы настраиваются в системных настройках.</p></details>
       </div>
     </section>
   </main>
