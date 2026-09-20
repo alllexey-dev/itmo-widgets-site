@@ -43,7 +43,7 @@ python3 -m http.server 8765 --directory site
 
 The domain is served by the shared `nginx-hub` on `alllexey.dev`, which only
 proxies to containers on the `web` network. The site is therefore its own
-`nginx:alpine` container (`deploy/compose.yml`, config `deploy/site.nginx.conf`)
+`nginx:alpine` container (`compose.yml` at the root, config `deploy/site.nginx.conf`)
 in `/mnt/raid/srv/web/itmowidgets-site`, and the hub's
 `conf.d/widgets.alllexey.dev.conf` sends `/api/` to the backend container and
 everything else to the site (`deploy/nginx-hub.widgets.snippet.conf`).

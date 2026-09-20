@@ -1,5 +1,5 @@
-# Static site container behind the shared nginx-hub. Deploy directory on the
-# server: /mnt/raid/srv/web/itmowidgets-site with the repository's site/ next to it.
+# Static site container behind the shared nginx-hub. On the server this repository
+# is checked out as /mnt/raid/srv/web/itmowidgets-site; `docker compose up -d` here.
 services:
   itmowidgets-site:
     image: nginx:alpine
