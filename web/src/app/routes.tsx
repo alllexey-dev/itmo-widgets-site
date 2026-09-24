@@ -1,6 +1,6 @@
 import { useQueryClient } from '@tanstack/react-query';
-import { useEffect } from 'react';
-import { Route, Routes, useNavigate } from 'react-router';
+import { useEffect, useRef } from 'react';
+import { Route, Routes, useLocation, useNavigate } from 'react-router';
 import { onSessionLost } from '../api/client';
 import { LoginPage } from '../features/auth/LoginPage';
 import { sessionQueryKey } from '../features/auth/session';
@@ -9,15 +9,26 @@ import { NotFoundPage } from './NotFoundPage';
 import { PlaceholderPage } from './PlaceholderPage';
 import { Shell } from './Shell';
 
-/** A lost session on any request leads to the login page without a reload. */
+const LOGIN_PATH = '/login';
+
+/**
+ * A lost session on any request leads to the login page without a reload. The login
+ * page checks the session itself, so a failed check there is not a lost session.
+ */
 function SessionLostRedirect() {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
+  const { pathname } = useLocation();
+  const pathnameRef = useRef(pathname);
+  useEffect(() => {
+    pathnameRef.current = pathname;
+  }, [pathname]);
   useEffect(
     () =>
       onSessionLost(() => {
+        if (pathnameRef.current === LOGIN_PATH) return;
         queryClient.removeQueries({ queryKey: sessionQueryKey });
-        void navigate('/login', { replace: true });
+        void navigate(LOGIN_PATH, { replace: true });
       }),
     [navigate, queryClient],
   );
@@ -29,7 +40,7 @@ export function AppRoutes() {
     <>
       <SessionLostRedirect />
       <Routes>
-        <Route path="/login" element={<LoginPage />} />
+        <Route path={LOGIN_PATH} element={<LoginPage />} />
         <Route element={<Shell />}>
           <Route index element={<HomePage />} />
           <Route path="admin/moderation" element={<PlaceholderPage path="/admin/moderation" />} />

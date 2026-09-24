@@ -1,0 +1,14 @@
+.qr {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-s);
+}
+
+.background {
+  fill: var(--qr-light);
+}
+
+.modules {
+  fill: var(--qr-dark);
+}

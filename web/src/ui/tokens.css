@@ -37,6 +37,10 @@
   --info-container: #d8e2ff;
   --on-info-container: #183466;
 
+  /* QR codes stay dark on light in both themes: not every scanner reads inverted ones. */
+  --qr-light: #ffffff;
+  --qr-dark: #1c1b1f;
+
   --font-sans: Roboto, 'Segoe UI', system-ui, -apple-system, sans-serif;
   --font-mono: 'Roboto Mono', ui-monospace, 'SF Mono', Menlo, monospace;
 

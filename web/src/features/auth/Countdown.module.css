@@ -1,0 +1,41 @@
+.countdown {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  color: var(--on-surface-variant);
+  font-size: var(--text-body-s);
+}
+
+.ring {
+  flex: none;
+  transform: rotate(-90deg);
+}
+
+.track,
+.progress {
+  fill: none;
+  stroke-width: 3;
+}
+
+.track {
+  stroke: var(--surface-high);
+}
+
+.progress {
+  stroke: var(--primary);
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1s linear;
+}
+
+.time {
+  color: var(--on-surface);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .progress {
+    transition: none;
+  }
+}

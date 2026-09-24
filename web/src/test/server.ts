@@ -1,5 +1,6 @@
 import { http, HttpResponse } from 'msw';
 import { setupServer } from 'msw/node';
+import type { LoginChallenge, LoginStatus } from '../features/auth/login';
 import type { Session } from '../features/auth/session';
 
 export const server = setupServer();
@@ -26,4 +27,51 @@ export function sessionOf(roles: Session['roles'], overrides: Partial<Session> =
 
 export function mockSession(session: Session) {
   server.use(http.get('*/api/web/auth/me', () => ok(session)));
+}
+
+/** A visitor without a session: `/me` answers 403 as the backend does. */
+export function mockSignedOut() {
+  server.use(http.get('*/api/web/auth/me', () => fail(403, 'forbidden')));
+}
+
+/** A code that lives 2 minutes from the moment the backend answers. */
+export function challengeOf(code: string): LoginChallenge {
+  return {
+    id: `challenge-${code}`,
+    code,
+    pollSecret: `secret-${code}`,
+    expiresAt: new Date(Date.now() + 120_000).toISOString(),
+  };
+}
+
+/** Each POST hands out the next code; the last one repeats. */
+export function mockChallenges(...codes: string[]) {
+  let created = 0;
+  server.use(
+    http.post('*/api/web/auth/challenges', () => {
+      const code = codes[Math.min(created, codes.length - 1)] ?? 'ABCDEFGH';
+      created += 1;
+      return ok(challengeOf(code));
+    }),
+  );
+}
+
+/** Answers polls with [status] for the code; a wrong poll secret gets 404 like the backend. */
+export function mockPoll(status: (code: string) => LoginStatus = () => 'PENDING') {
+  server.use(
+    http.get('*/api/web/auth/challenges/:id', ({ params, request }) => {
+      const code = String(params.id).replace('challenge-', '');
+      if (request.headers.get('X-Poll-Secret') !== `secret-${code}`) return fail(404, 'not_found');
+      return ok({ status: status(code) });
+    }),
+  );
+}
+
+/** The moderator queue behind the home card, [count] open cases. */
+export function mockOpenCases(count: number) {
+  server.use(
+    http.get('*/api/moderation/cases', () =>
+      ok(Array.from({ length: count }, (_, index) => ({ id: `case-${index}` }))),
+    ),
+  );
 }

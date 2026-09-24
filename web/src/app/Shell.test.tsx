@@ -4,7 +4,16 @@ import { http, HttpResponse } from 'msw';
 import { describe, expect, it } from 'vitest';
 import type { Role } from '../features/auth/session';
 import { renderApp } from '../test/render';
-import { fail, mockSession, server, sessionOf } from '../test/server';
+import {
+  fail,
+  mockChallenges,
+  mockOpenCases,
+  mockPoll,
+  mockSession,
+  server,
+  ok,
+  sessionOf,
+} from '../test/server';
 
 const MODERATOR_LINKS = ['Модерация', 'Ограничения'];
 const ADMIN_LINKS = ['Дашборд', 'Пользователи', 'Спорт', 'Система', 'Журнал'];
@@ -24,6 +33,7 @@ describe('Shell navigation', () => {
     ['the admin', ['ADMIN'], ['Главная', ...MODERATOR_LINKS, ...ADMIN_LINKS]],
   ])('shows %s only their sections', async (_, roles, expected) => {
     mockSession(sessionOf(roles));
+    mockOpenCases(0);
 
     renderApp('/');
 
@@ -54,27 +64,36 @@ describe('Shell navigation', () => {
 
   it('sends a visitor without a session to the login page', async () => {
     server.use(http.get('*/api/web/auth/me', () => fail(401, 'unauthorized')));
+    mockChallenges('ABCDEFGH');
+    mockPoll();
 
     renderApp('/admin/moderation');
 
     expect(await screen.findByRole('heading', { name: 'Вход' })).toBeInTheDocument();
+    expect(await screen.findByText('ABCD EFGH')).toBeInTheDocument();
   });
 
-  it('logs out from the account menu', async () => {
-    mockSession(sessionOf(['MODERATOR']));
+  it('logs out from the account menu and returns to the login page', async () => {
     let loggedOut = false;
     server.use(
+      http.get('*/api/web/auth/me', () =>
+        loggedOut ? fail(403, 'forbidden') : ok(sessionOf(['MODERATOR'])),
+      ),
       http.post('*/api/web/auth/logout', ({ request }) => {
         loggedOut = request.headers.get('X-Web-Request') === '1';
         return HttpResponse.json({ success: true, data: null, error: null });
       }),
     );
+    mockOpenCases(0);
+    mockChallenges('ABCDEFGH');
+    mockPoll();
     renderApp('/');
 
     await userEvent.click(await screen.findByRole('button', { name: 'Аккаунт: Анна Смирнова' }));
     await userEvent.click(screen.getByRole('menuitem', { name: 'Выйти' }));
 
-    expect(await screen.findByRole('heading', { name: 'Вход' })).toBeInTheDocument();
+    expect(await screen.findByRole('img', { name: 'QR-код для входа' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Вход' })).toBeInTheDocument();
     expect(loggedOut).toBe(true);
   });
 
