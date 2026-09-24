@@ -1,0 +1,84 @@
+.diff {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: var(--text-body-s);
+  table-layout: fixed;
+}
+
+.diff th,
+.diff td {
+  padding: var(--space-2) var(--space-3);
+  text-align: start;
+  vertical-align: top;
+  overflow-wrap: anywhere;
+}
+
+.diff thead th {
+  color: var(--on-surface-variant);
+  font-weight: 600;
+}
+
+.fieldHead {
+  width: 132px;
+}
+
+.field {
+  color: var(--on-surface-variant);
+  font-weight: 500;
+}
+
+.badge {
+  display: flex;
+  width: fit-content;
+  margin-top: var(--space-1);
+}
+
+.diff tbody td {
+  border-top: 1px solid var(--outline-variant);
+}
+
+.diff tbody th {
+  border-top: 1px solid var(--outline-variant);
+}
+
+.changed .before {
+  background: color-mix(in srgb, var(--error-container) 40%, transparent);
+  color: var(--on-surface);
+  text-decoration: line-through;
+  text-decoration-color: color-mix(in srgb, var(--on-error-container) 50%, transparent);
+}
+
+.changed .after {
+  background: color-mix(in srgb, var(--success-container) 45%, transparent);
+  color: var(--on-surface);
+}
+
+@media (max-width: 600px) {
+  .diff thead {
+    display: none;
+  }
+
+  .diff tr,
+  .diff th,
+  .diff td {
+    display: block;
+  }
+
+  .diff tbody tr {
+    padding: var(--space-2) 0;
+    border-top: 1px solid var(--outline-variant);
+  }
+
+  .diff tbody th,
+  .diff tbody td {
+    border-top: 0;
+    border-radius: var(--radius-xs);
+  }
+
+  .diff td::before {
+    content: attr(data-label) ': ';
+    color: var(--on-surface-variant);
+    font-weight: 500;
+  }
+}

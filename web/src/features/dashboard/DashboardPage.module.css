@@ -1,0 +1,145 @@
+.page {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 168px), 1fr));
+  gap: var(--space-3);
+}
+
+.skeletonTile {
+  border-radius: var(--radius);
+}
+
+.casesTile {
+  display: grid;
+  align-content: space-between;
+  gap: var(--space-1);
+  padding: var(--space-4) var(--space-5);
+  border-radius: var(--radius);
+  background: var(--primary-container);
+  color: var(--on-primary-container);
+  transition: background var(--duration) var(--ease);
+}
+
+.casesTile:hover {
+  background: color-mix(in srgb, var(--on-primary-container) 8%, var(--primary-container));
+  text-decoration: none;
+}
+
+.casesTile:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.casesLabel,
+.casesAction {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-body-s);
+  font-weight: 500;
+}
+
+.casesValue {
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.charts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr));
+  gap: var(--space-4);
+}
+
+.chartCard {
+  display: grid;
+  align-content: start;
+  min-height: 272px;
+}
+
+.figure {
+  margin: 0;
+}
+
+.tooltip {
+  display: grid;
+  gap: 2px;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-xs);
+  background: var(--inverse-surface);
+  color: var(--inverse-on-surface);
+  font-size: var(--text-body-s);
+  box-shadow: var(--shadow-overlay);
+}
+
+.tooltipDate {
+  opacity: 0.8;
+}
+
+.bars {
+  display: grid;
+  gap: var(--space-3);
+  margin: var(--space-2) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.bar {
+  display: grid;
+  grid-template-columns: 112px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--text-body-s);
+}
+
+.barLabel {
+  color: var(--on-surface-variant);
+}
+
+.barTrack {
+  height: 16px;
+  border-radius: 0 4px 4px 0;
+  background: var(--surface-high);
+  overflow: hidden;
+}
+
+.barFill {
+  display: block;
+  height: 100%;
+  min-width: 2px;
+  border-radius: 0 4px 4px 0;
+  background: var(--primary);
+}
+
+.barValue {
+  min-width: 40px;
+  font-weight: 600;
+  text-align: end;
+  font-variant-numeric: tabular-nums;
+}
+
+.details {
+  border-radius: var(--radius);
+  background: var(--surface-low);
+}
+
+.summary {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--touch);
+  padding: 0 var(--space-5);
+  border-radius: var(--radius);
+  color: var(--on-surface-variant);
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.summary:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}

@@ -1,0 +1,369 @@
+.detail {
+  display: grid;
+  gap: var(--space-5);
+  align-content: start;
+  min-width: 0;
+  padding: var(--space-5);
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+}
+
+.back {
+  display: none;
+  margin: calc(var(--space-2) * -1) 0 0 calc(var(--space-3) * -1);
+}
+
+.headerText {
+  display: grid;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-1);
+}
+
+.title {
+  font-size: var(--text-title-l);
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.muted {
+  color: var(--on-surface-variant);
+  font-size: var(--text-body-s);
+}
+
+.note {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--on-surface-variant);
+  font-size: var(--text-body-s);
+}
+
+.actions {
+  position: sticky;
+  top: var(--topbar-height);
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  margin: 0 calc(var(--space-5) * -1);
+  padding: var(--space-2) var(--space-5);
+  background: var(--surface-low);
+  border-bottom: 1px solid var(--outline-variant);
+}
+
+.mainActions,
+.moreActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.moreActions {
+  gap: 0;
+}
+
+.preview {
+  display: grid;
+  gap: var(--space-4);
+  padding: var(--space-4);
+  border: 1px solid var(--outline-variant);
+  border-radius: var(--radius-m);
+  background: var(--surface);
+}
+
+.previewHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+.categoryIcon {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-s);
+  background: var(--primary-container);
+  color: var(--on-primary-container);
+}
+
+.previewText {
+  display: grid;
+  flex: 1 1 200px;
+  gap: 2px;
+  min-width: 0;
+}
+
+.category {
+  color: var(--primary);
+  font-size: var(--text-body-s);
+  font-weight: 600;
+}
+
+.previewTitle {
+  font-size: var(--text-title-s);
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.url {
+  overflow: hidden;
+  font-family: var(--font-mono);
+  font-size: var(--text-body-s);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.urlHost {
+  color: var(--on-surface);
+  font-weight: 600;
+}
+
+.urlMuted {
+  color: var(--on-surface-variant);
+}
+
+.facts,
+.history {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: var(--space-3) var(--space-4);
+  margin: 0;
+}
+
+.facts dt,
+.history dt {
+  color: var(--on-surface-variant);
+  font-size: var(--text-body-s);
+}
+
+.facts dd,
+.history dd {
+  margin: 0;
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+
+.history {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-s);
+  background: var(--surface-container);
+}
+
+.history dd {
+  font-size: var(--text-title-m);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.section {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.sectionTitle {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-title-s);
+  font-weight: 600;
+}
+
+.count {
+  min-width: 22px;
+  padding: 0 6px;
+  border-radius: var(--radius-pill);
+  background: var(--surface-high);
+  color: var(--on-surface-variant);
+  font-size: 12px;
+  line-height: 22px;
+  text-align: center;
+}
+
+.author {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.authorText {
+  display: grid;
+  flex: 1;
+  min-width: 0;
+}
+
+.authorName {
+  font-weight: 600;
+}
+
+.restrictions,
+.reports,
+.timeline {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.restriction {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-s);
+  background: var(--error-container);
+  color: var(--on-error-container);
+  font-size: var(--text-body-s);
+}
+
+.restriction .muted {
+  color: inherit;
+  opacity: 0.85;
+}
+
+.report {
+  display: grid;
+  gap: var(--space-1);
+  padding: var(--space-3);
+  border-radius: var(--radius-s);
+  background: var(--surface-container);
+}
+
+.reportHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.reportComment {
+  overflow-wrap: anywhere;
+}
+
+.timeline {
+  gap: 0;
+}
+
+.event {
+  position: relative;
+  display: flex;
+  gap: var(--space-3);
+  padding-bottom: var(--space-4);
+}
+
+.event:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  top: 32px;
+  bottom: 0;
+  left: 15px;
+  width: 2px;
+  background: var(--outline-variant);
+}
+
+.eventDot {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--secondary-container);
+  color: var(--on-secondary-container);
+}
+
+.eventBody {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+  padding-top: 5px;
+}
+
+.eventTitle {
+  font-weight: 600;
+}
+
+.eventNote {
+  margin-top: var(--space-1);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-s);
+  background: var(--surface-container);
+  overflow-wrap: anywhere;
+}
+
+.hint {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  color: var(--on-surface-variant);
+  font-size: var(--text-body-s);
+}
+
+.hint span {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.form {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--space-3);
+}
+
+.presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+@media (max-width: 1023.98px) {
+  .back {
+    display: inline-flex;
+  }
+
+  /* Several rows of actions would cover too much of a phone screen. */
+  .actions {
+    position: static;
+  }
+}
+
+@media (max-width: 480px) {
+  .detail {
+    padding: var(--space-4);
+  }
+
+  .actions {
+    margin: 0 calc(var(--space-4) * -1);
+    padding: var(--space-2) var(--space-4);
+  }
+
+  .history {
+    grid-template-columns: 1fr;
+  }
+}

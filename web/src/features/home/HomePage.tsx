@@ -3,8 +3,8 @@ import { Link } from 'react-router';
 import { Avatar, Badge, Card, Icon, PageHeader, Skeleton } from '../../ui';
 import { displayName, hasAccess, type Session, type SessionGroup } from '../auth/session';
 import { useSession } from '../auth/useSession';
+import { useOpenCaseCount } from '../moderation/api';
 import styles from './HomePage.module.css';
-import { useOpenCaseCount } from './openCases';
 
 export function HomePage() {
   const session = useSession();

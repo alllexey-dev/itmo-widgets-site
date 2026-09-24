@@ -28,7 +28,3 @@ export function visibleNavGroups(session: Session): NavItem[][] {
     (group) => group.length > 0,
   );
 }
-
-export function navItemByPath(path: string): NavItem | undefined {
-  return NAV_GROUPS.flat().find((item) => item.path === path);
-}

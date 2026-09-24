@@ -43,7 +43,7 @@ describe('HomePage', () => {
 
   it('hides the open cases quietly when the queue does not load', async () => {
     mockSession(sessionOf(['MODERATOR']));
-    server.use(http.get('*/api/moderation/cases', () => fail(503, 'unavailable')));
+    server.use(http.get('*/api/admin/moderation/cases', () => fail(503, 'unavailable')));
     renderApp('/');
     await screen.findByRole('region', { name: 'Анна Смирнова' });
 

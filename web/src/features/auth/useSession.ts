@@ -1,7 +1,14 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { createContext, useContext } from 'react';
 import { useNavigate } from 'react-router';
-import { fetchSession, logout, sessionQueryKey, type Session } from './session';
+import {
+  fetchSession,
+  hasAccess,
+  logout,
+  sessionQueryKey,
+  type Access,
+  type Session,
+} from './session';
 
 export const SessionContext = createContext<Session | null>(null);
 
@@ -32,4 +39,9 @@ export function useLogout() {
       void navigate('/login', { replace: true });
     },
   });
+}
+
+/** Whether the signed-in user may open a section or see an action. */
+export function useAccess(access: Access): boolean {
+  return hasAccess(useSession(), access);
 }

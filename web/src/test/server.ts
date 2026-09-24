@@ -67,11 +67,11 @@ export function mockPoll(status: (code: string) => LoginStatus = () => 'PENDING'
   );
 }
 
-/** The moderator queue behind the home card, [count] open cases. */
+/** The open-case count behind the home card: a one-item page with [count] as the total. */
 export function mockOpenCases(count: number) {
   server.use(
-    http.get('*/api/moderation/cases', () =>
-      ok(Array.from({ length: count }, (_, index) => ({ id: `case-${index}` }))),
+    http.get('*/api/admin/moderation/cases', () =>
+      ok({ items: [], page: 0, size: 1, total: count }),
     ),
   );
 }

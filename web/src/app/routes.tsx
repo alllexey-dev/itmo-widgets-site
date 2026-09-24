@@ -4,9 +4,17 @@ import { Route, Routes, useLocation, useNavigate } from 'react-router';
 import { onSessionLost } from '../api/client';
 import { LoginPage } from '../features/auth/LoginPage';
 import { sessionQueryKey } from '../features/auth/session';
+import { AuditPage } from '../features/audit/AuditPage';
+import { DashboardPage } from '../features/dashboard/DashboardPage';
 import { HomePage } from '../features/home/HomePage';
+import { ModerationPage } from '../features/moderation/ModerationPage';
+import { RestrictionsPage } from '../features/moderation/RestrictionsPage';
+import { SportPage } from '../features/system/SportPage';
+import { SystemPage } from '../features/system/SystemPage';
+import { UserPage } from '../features/users/UserPage';
+import { UsersPage } from '../features/users/UsersPage';
 import { NotFoundPage } from './NotFoundPage';
-import { PlaceholderPage } from './PlaceholderPage';
+import { RequireAccess } from './RequireAccess';
 import { Shell } from './Shell';
 
 const LOGIN_PATH = '/login';
@@ -43,16 +51,18 @@ export function AppRoutes() {
         <Route path={LOGIN_PATH} element={<LoginPage />} />
         <Route element={<Shell />}>
           <Route index element={<HomePage />} />
-          <Route path="admin/moderation" element={<PlaceholderPage path="/admin/moderation" />} />
-          <Route
-            path="admin/restrictions"
-            element={<PlaceholderPage path="/admin/restrictions" />}
-          />
-          <Route path="admin/dashboard" element={<PlaceholderPage path="/admin/dashboard" />} />
-          <Route path="admin/users" element={<PlaceholderPage path="/admin/users" />} />
-          <Route path="admin/sport" element={<PlaceholderPage path="/admin/sport" />} />
-          <Route path="admin/system" element={<PlaceholderPage path="/admin/system" />} />
-          <Route path="admin/audit" element={<PlaceholderPage path="/admin/audit" />} />
+          <Route element={<RequireAccess access="moderator" />}>
+            <Route path="admin/moderation" element={<ModerationPage />} />
+            <Route path="admin/restrictions" element={<RestrictionsPage />} />
+          </Route>
+          <Route element={<RequireAccess access="admin" />}>
+            <Route path="admin/dashboard" element={<DashboardPage />} />
+            <Route path="admin/users" element={<UsersPage />} />
+            <Route path="admin/users/:isu" element={<UserPage />} />
+            <Route path="admin/sport" element={<SportPage />} />
+            <Route path="admin/system" element={<SystemPage />} />
+            <Route path="admin/audit" element={<AuditPage />} />
+          </Route>
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>

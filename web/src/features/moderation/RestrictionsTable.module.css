@@ -1,0 +1,54 @@
+.user {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-width: 180px;
+}
+
+.userText {
+  display: grid;
+  min-width: 0;
+}
+
+.name {
+  font-weight: 500;
+}
+
+.muted {
+  color: var(--on-surface-variant);
+  font-size: var(--text-body-s);
+}
+
+.reason {
+  display: -webkit-box;
+  max-width: 320px;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow-wrap: anywhere;
+}
+
+.actions {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.caseLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--touch);
+  height: var(--touch);
+  border-radius: var(--radius-pill);
+  color: var(--on-surface-variant);
+}
+
+.caseLink:hover {
+  background: color-mix(in srgb, var(--on-surface) 8%, transparent);
+}
+
+.caseLink:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}

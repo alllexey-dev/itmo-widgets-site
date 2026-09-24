@@ -1,0 +1,138 @@
+.list {
+  display: grid;
+  gap: 2px;
+  margin: 0;
+  padding: var(--space-2);
+  list-style: none;
+}
+
+.row {
+  display: flex;
+  gap: var(--space-3);
+  width: 100%;
+  padding: var(--space-3);
+  border: 0;
+  border-radius: var(--radius-m);
+  background: transparent;
+  text-align: start;
+  cursor: pointer;
+  transition: background-color var(--duration) var(--ease);
+}
+
+.row:hover {
+  background: color-mix(in srgb, var(--on-surface) 5%, transparent);
+}
+
+.row:focus-visible {
+  outline: none;
+  box-shadow: inset var(--focus-ring);
+}
+
+.selected,
+.selected:hover {
+  background: var(--secondary-container);
+  color: var(--on-secondary-container);
+}
+
+.icon {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-s);
+  background: var(--surface-high);
+  color: var(--on-surface-variant);
+}
+
+.selected .icon {
+  background: var(--surface);
+  color: var(--primary);
+}
+
+.body {
+  display: grid;
+  flex: 1;
+  gap: 2px;
+  min-width: 0;
+}
+
+.top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.title {
+  overflow: hidden;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.reason {
+  flex: none;
+}
+
+.line,
+.meta {
+  overflow: hidden;
+  color: var(--on-surface-variant);
+  font-size: var(--text-body-s);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.selected .line,
+.selected .meta {
+  color: inherit;
+  opacity: 0.85;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.meta > * + *::before {
+  content: '·';
+  margin-right: var(--space-2);
+}
+
+.author {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.reports {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  font-variant-numeric: tabular-nums;
+}
+
+.hidden {
+  font-weight: 600;
+}
+
+.skeleton {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-3);
+}
+
+.skeletonRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-2);
+}
+
+.skeletonText {
+  display: grid;
+  flex: 1;
+  gap: var(--space-2);
+}

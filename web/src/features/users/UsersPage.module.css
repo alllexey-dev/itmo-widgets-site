@@ -1,0 +1,39 @@
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.search {
+  flex: 1 1 280px;
+  max-width: 420px;
+}
+
+.total {
+  color: var(--on-surface-variant);
+  font-size: var(--text-body-s);
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-width: 180px;
+}
+
+.name {
+  font-weight: 500;
+}
+
+.roles {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+}
+
+.muted {
+  color: var(--on-surface-variant);
+}

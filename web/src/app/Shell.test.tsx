@@ -42,6 +42,7 @@ describe('Shell navigation', () => {
 
   it('marks the current section and renders its page', async () => {
     mockSession(sessionOf(['ADMIN']));
+    server.use(http.get('*/api/admin/users', () => ok({ items: [], page: 0, size: 20, total: 0 })));
 
     renderApp('/admin/users');
 
