@@ -1,0 +1,42 @@
+.skeleton {
+  display: block;
+  background: linear-gradient(
+    90deg,
+    var(--surface-high) 0%,
+    var(--surface-container) 50%,
+    var(--surface-high) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+}
+
+.rect {
+  border-radius: var(--radius-s);
+  height: 48px;
+}
+
+.text {
+  border-radius: var(--radius-xs);
+  height: 1em;
+}
+
+.circle {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+
+.lines {
+  display: grid;
+  gap: var(--space-2);
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 100% 0;
+  }
+
+  to {
+    background-position: -100% 0;
+  }
+}

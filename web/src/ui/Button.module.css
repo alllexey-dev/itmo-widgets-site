@@ -1,0 +1,98 @@
+.button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: var(--touch);
+  padding: 0 var(--space-6);
+  border: 0;
+  border-radius: var(--radius-pill);
+  font-size: var(--text-label);
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    filter var(--duration) var(--ease),
+    background-color var(--duration) var(--ease);
+}
+
+.button:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.button:disabled {
+  cursor: default;
+  opacity: 0.55;
+}
+
+.loading:disabled {
+  cursor: progress;
+  opacity: 1;
+}
+
+.small {
+  min-height: 40px;
+  padding: 0 var(--space-4);
+}
+
+/* A 40 px button keeps a 48 px touch area. */
+.small::after {
+  content: '';
+  position: absolute;
+  inset: -4px 0;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+.filled {
+  background: var(--primary);
+  color: var(--on-primary);
+}
+
+.tonal {
+  background: var(--secondary-container);
+  color: var(--on-secondary-container);
+}
+
+.text {
+  background: transparent;
+  color: var(--primary);
+  padding: 0 var(--space-3);
+}
+
+.filled:not(:disabled):hover,
+.tonal:not(:disabled):hover {
+  filter: brightness(1.08);
+}
+
+.text:not(:disabled):hover {
+  background: color-mix(in srgb, var(--primary) 8%, transparent);
+}
+
+.filled.danger {
+  background: var(--error);
+  color: var(--on-error);
+}
+
+.tonal.danger {
+  background: var(--error-container);
+  color: var(--on-error-container);
+}
+
+.text.danger {
+  color: var(--error);
+}
+
+.label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.spinner {
+  color: currentcolor;
+}

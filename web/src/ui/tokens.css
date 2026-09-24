@@ -1,0 +1,149 @@
+/*
+ * Design tokens. Colours follow the landing site (widgets.alllexey.dev) and the
+ * Material 3 roles of the Android app: flat surfaces, primary #3a5488, radius 20.
+ * Dark values apply by `prefers-color-scheme` unless the user picked a theme,
+ * which sets `data-theme` on <html>.
+ */
+:root {
+  color-scheme: light;
+
+  --surface: #f9f9fe;
+  --surface-low: #f1f2f8;
+  --surface-container: #ebedf3;
+  --surface-high: #e6e8ee;
+  --on-surface: #1c1b1f;
+  --on-surface-variant: #5c5f66;
+  --outline: #767983;
+  --outline-variant: #c6c8d1;
+  --primary: #3a5488;
+  --on-primary: #ffffff;
+  --primary-container: #d8e2ff;
+  --on-primary-container: #102c5c;
+  --secondary-container: #dde3f1;
+  --on-secondary-container: #1f2a44;
+  --error: #ba1a1a;
+  --on-error: #ffffff;
+  --scrim: rgb(0 0 0 / 32%);
+  --inverse-surface: #313034;
+  --inverse-on-surface: #f4eff4;
+  --inverse-primary: #aec4ff;
+
+  --success-container: #d3f0d9;
+  --on-success-container: #0d4f26;
+  --warning-container: #fbe7b3;
+  --on-warning-container: #573f00;
+  --error-container: #ffdad6;
+  --on-error-container: #8c0009;
+  --info-container: #d8e2ff;
+  --on-info-container: #183466;
+
+  --font-sans: Roboto, 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font-mono: 'Roboto Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* 4 px grid. */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+
+  --radius: 20px;
+  --radius-m: 16px;
+  --radius-s: 12px;
+  --radius-xs: 8px;
+  --radius-pill: 999px;
+
+  --text-display: 30px;
+  --text-title-l: 22px;
+  --text-title-m: 18px;
+  --text-title-s: 15px;
+  --text-body-l: 16px;
+  --text-body-m: 15px;
+  --text-body-s: 13px;
+  --text-label: 14px;
+
+  --touch: 48px;
+  --focus-ring: 0 0 0 3px color-mix(in srgb, var(--primary) 45%, transparent);
+  --shadow-overlay: 0 12px 40px rgb(0 0 0 / 18%);
+  --duration: 160ms;
+  --ease: cubic-bezier(0.2, 0, 0, 1);
+
+  --nav-width: 264px;
+  --topbar-height: 64px;
+  --content-max: 1280px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    color-scheme: dark;
+
+    --surface: #131316;
+    --surface-low: #1c1c20;
+    --surface-container: #212226;
+    --surface-high: #26272c;
+    --on-surface: #e6e1e5;
+    --on-surface-variant: #b3b6c0;
+    --outline: #90929a;
+    --outline-variant: #46474f;
+    --primary: #aec4ff;
+    --on-primary: #0f2a5e;
+    --primary-container: #294177;
+    --on-primary-container: #d8e2ff;
+    --secondary-container: #2c3548;
+    --on-secondary-container: #dde3f1;
+    --error: #ffb4ab;
+    --on-error: #690005;
+    --scrim: rgb(0 0 0 / 56%);
+    --inverse-surface: #e6e1e5;
+    --inverse-on-surface: #313034;
+    --inverse-primary: #3a5488;
+
+    --success-container: #1d4a2c;
+    --on-success-container: #b8f0c6;
+    --warning-container: #4a3700;
+    --on-warning-container: #fbe08e;
+    --error-container: #7a1c19;
+    --on-error-container: #ffdad6;
+    --info-container: #2c3f66;
+    --on-info-container: #d8e2ff;
+    --shadow-overlay: 0 12px 40px rgb(0 0 0 / 50%);
+  }
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+
+  --surface: #131316;
+  --surface-low: #1c1c20;
+  --surface-container: #212226;
+  --surface-high: #26272c;
+  --on-surface: #e6e1e5;
+  --on-surface-variant: #b3b6c0;
+  --outline: #90929a;
+  --outline-variant: #46474f;
+  --primary: #aec4ff;
+  --on-primary: #0f2a5e;
+  --primary-container: #294177;
+  --on-primary-container: #d8e2ff;
+  --secondary-container: #2c3548;
+  --on-secondary-container: #dde3f1;
+  --error: #ffb4ab;
+  --on-error: #690005;
+  --scrim: rgb(0 0 0 / 56%);
+  --inverse-surface: #e6e1e5;
+  --inverse-on-surface: #313034;
+  --inverse-primary: #3a5488;
+
+  --success-container: #1d4a2c;
+  --on-success-container: #b8f0c6;
+  --warning-container: #4a3700;
+  --on-warning-container: #fbe08e;
+  --error-container: #7a1c19;
+  --on-error-container: #ffdad6;
+  --info-container: #2c3f66;
+  --on-info-container: #d8e2ff;
+  --shadow-overlay: 0 12px 40px rgb(0 0 0 / 50%);
+}

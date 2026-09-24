@@ -1,0 +1,73 @@
+.list {
+  display: flex;
+  gap: var(--space-1);
+  overflow-x: auto;
+  border-bottom: 1px solid var(--outline-variant);
+  scrollbar-width: none;
+}
+
+.tab {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--touch);
+  padding: 0 var(--space-4);
+  border: 0;
+  border-radius: var(--radius-s) var(--radius-s) 0 0;
+  background: transparent;
+  color: var(--on-surface-variant);
+  font-size: var(--text-label);
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.tab:hover {
+  background: color-mix(in srgb, var(--on-surface) 6%, transparent);
+}
+
+.tab:focus-visible {
+  outline: none;
+  box-shadow: inset var(--focus-ring);
+}
+
+.selected {
+  color: var(--primary);
+}
+
+.selected::after {
+  content: '';
+  position: absolute;
+  right: var(--space-2);
+  bottom: 0;
+  left: var(--space-2);
+  height: 3px;
+  border-radius: 3px 3px 0 0;
+  background: var(--primary);
+}
+
+.count {
+  min-width: 20px;
+  padding: 0 6px;
+  border-radius: var(--radius-pill);
+  background: var(--surface-high);
+  color: var(--on-surface-variant);
+  font-size: 12px;
+  line-height: 20px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.selected .count {
+  background: var(--secondary-container);
+  color: var(--on-secondary-container);
+}
+
+.panel {
+  padding-top: var(--space-4);
+}
+
+.panel:focus-visible {
+  outline: none;
+}

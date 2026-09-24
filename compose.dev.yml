@@ -1,0 +1,17 @@
+# Development container for dev.widgets.alllexey.dev, which routes only /app/ here.
+# `docker compose -f compose.dev.yml up -d --build` in the server checkout.
+name: itmowidgets-web-dev
+
+services:
+  itmowidgets-web-dev:
+    build: .
+    image: itmowidgets-web:dev
+    container_name: itmowidgets-web-dev
+    restart: unless-stopped
+    networks:
+      - web
+
+networks:
+  web:
+    external: true
+    name: web

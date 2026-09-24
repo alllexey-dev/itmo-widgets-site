@@ -1,21 +1,28 @@
-# ITMO.Widgets — site
+# ITMO.Widgets — сайт и веб-версия
 
-Static site for `https://widgets.alllexey.dev`: the landing page, the privacy
-policy and the FAQ of the Android application
-[ITMO.Widgets](https://github.com/alllexey-dev/ITMO.Widgets).
+Всё, что отдаётся на `https://widgets.alllexey.dev`, кроме API:
 
-## Layout
+- лендинг и политика конфиденциальности Android-приложения
+  [ITMO.Widgets](https://github.com/alllexey-dev/ITMO.Widgets) — на `/`;
+- веб-версия с админкой для модераторов и администратора — на `/app/`.
 
-- `site/` — everything that is served: `index.html`, `privacy.html`,
-  `style.css`, `img/`.
-- `site/img/light`, `site/img/night` — screenshots per colour scheme; the pages
-  pick one with `<picture>` and `prefers-color-scheme`.
+## Структура
 
-## Screenshots
+- `site/` — лендинг: `index.html`, `privacy.html`, `style.css`, `img/`.
+  Скриншоты лежат в `site/img/light` и `site/img/night`, страница выбирает их
+  через `<picture>` и `prefers-color-scheme`.
+- `web/` — веб-версия (Vite, React, TypeScript), подробности в
+  [`web/README.md`](web/README.md).
+- `Dockerfile` — собирает `web/` и кладёт лендинг и веб-версию в один образ
+  `nginx:alpine`; конфиг — `deploy/site.nginx.conf`.
+- `compose.yml` — прод (контейнер `itmowidgets-web`), `compose.dev.yml` — dev
+  (контейнер `itmowidgets-web-dev`).
 
-Every screenshot is rendered on an emulator by the Android project's
-instrumentation class `SiteScreenshotCapture` from invented, lifelike fixture
-data; nothing comes from a real account. To regenerate, in the app repository:
+## Скриншоты лендинга
+
+Все скриншоты снимаются на эмуляторе классом `SiteScreenshotCapture` из
+Android-проекта на выдуманных данных; реальных аккаунтов там нет. В репозитории
+приложения:
 
 ```bash
 adb shell cmd uimode night no
@@ -30,24 +37,46 @@ adb pull /sdcard/Android/data/dev.alllexey.itmowidgets/cache/site-screenshots-li
 adb pull /sdcard/Android/data/dev.alllexey.itmowidgets/cache/site-screenshots-night
 ```
 
-Then convert to WebP: `cwebp -q 82 -resize 720 0 in.png -o out.webp`. Widget
-pictures come from `WidgetPreviewImageCapture` the same way.
+Затем перевести в WebP: `cwebp -q 82 -resize 720 0 in.png -o out.webp`.
+Картинки виджетов так же снимает `WidgetPreviewImageCapture`.
 
-## Local preview
+## Локальный просмотр
+
+Лендинг:
 
 ```bash
 python3 -m http.server 8765 --directory site
 ```
 
-## Deployment
+Веб-версия (откроется на `http://localhost:5173/app/`):
 
-The domain is served by the shared `nginx-hub` on `alllexey.dev`, which only
-proxies to containers on the `web` network. The site is therefore its own
-`nginx:alpine` container (`compose.yml` at the root, config `deploy/site.nginx.conf`)
-in `/mnt/raid/srv/web/itmowidgets-web`, and the hub's
-`conf.d/widgets.alllexey.dev.conf` sends `/api/` to the backend container and
-everything else to the site (`deploy/nginx-hub.widgets.snippet.conf`).
+```bash
+cd web && npm install && npm run dev
+```
 
-Update: `git pull` in the server directory; the container serves the files
-directly, no restart needed. Check with `nginx -t` inside `nginx-hub` before a
-reload whenever the hub config changes.
+## Развёртывание
+
+Домены обслуживает общий `nginx-hub` на `alllexey.dev`, он проксирует только в
+контейнеры сети `web`.
+
+- Прод: клон в `/mnt/raid/srv/web/itmowidgets-web`, hub
+  (`conf.d/widgets.alllexey.dev.conf`) отправляет `/api/` в бэкенд, всё
+  остальное — в `itmowidgets-web:80` (`deploy/nginx-hub.widgets.snippet.conf`).
+- Dev: hub `dev.widgets.alllexey.dev` отправляет `/app/` в
+  `itmowidgets-web-dev:80`, остальное — в dev-бэкенд.
+
+Обновление — после `git pull` пересобрать образ, иначе изменения лендинга и
+веб-версии не попадут в контейнер:
+
+```bash
+git pull && docker compose up -d --build
+```
+
+Dev:
+
+```bash
+git pull && docker compose -f compose.dev.yml up -d --build
+```
+
+Если меняется конфиг hub, перед перезагрузкой проверить его `nginx -t` внутри
+контейнера `nginx-hub`.

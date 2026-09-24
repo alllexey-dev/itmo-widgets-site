@@ -1,13 +1,12 @@
-# Static site container behind the shared nginx-hub. On the server this repository
-# is checked out as /mnt/raid/srv/web/itmowidgets-web; `docker compose up -d` here.
+# Landing (/) and web app (/app/) behind the shared nginx-hub. On the server this
+# repository is checked out as /mnt/raid/srv/web/itmowidgets-web;
+# `docker compose up -d --build` here after `git pull`.
 services:
   itmowidgets-web:
-    image: nginx:alpine
+    build: .
+    image: itmowidgets-web:local
     container_name: itmowidgets-web
     restart: unless-stopped
-    volumes:
-      - ./site:/usr/share/nginx/html:ro
-      - ./deploy/site.nginx.conf:/etc/nginx/conf.d/default.conf:ro
     networks:
       - web
 

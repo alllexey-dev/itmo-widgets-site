@@ -1,0 +1,89 @@
+.root {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4);
+}
+
+.scrim {
+  position: absolute;
+  inset: 0;
+  background: var(--scrim);
+  animation: fade var(--duration) var(--ease);
+}
+
+.panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  width: 100%;
+  max-height: calc(100dvh - var(--space-8));
+  overflow: auto;
+  padding: var(--space-6);
+  border-radius: 28px;
+  background: var(--surface-container);
+  box-shadow: var(--shadow-overlay);
+  animation: rise var(--duration) var(--ease);
+}
+
+.panel:focus-visible {
+  outline: none;
+}
+
+.small {
+  max-width: 440px;
+}
+
+.medium {
+  max-width: 600px;
+}
+
+.large {
+  max-width: 840px;
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-2);
+  margin: calc(var(--space-2) * -1) calc(var(--space-3) * -1) 0 0;
+}
+
+.title {
+  padding-top: var(--space-3);
+  font-size: var(--text-title-l);
+  font-weight: 600;
+}
+
+.description {
+  color: var(--on-surface-variant);
+}
+
+.body {
+  min-height: 0;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--space-2);
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
